@@ -4,6 +4,7 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
 
+        // Minify the images and store them in the assets directory
         imagemin: {
             bluemarble: {
                 options: {
@@ -21,7 +22,7 @@ module.exports = function (grunt) {
                     'assets/images/200409.jpg': 'src/images/world.200409.3x5400x2700.jpg',
                     'assets/images/200410.jpg': 'src/images/world.200410.3x5400x2700.jpg',
                     'assets/images/200411.jpg': 'src/images/world.200411.3x5400x2700.jpg',
-                    'assets/images/200411.jpg': 'src/images/world.200412.3x5400x2700.jpg'
+                    'assets/images/200412.jpg': 'src/images/world.200412.3x5400x2700.jpg'
                 }
             }
         },
