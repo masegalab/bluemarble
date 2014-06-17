@@ -1,0 +1,28 @@
+{
+  "name": "bluemarble",
+  "version": "0.1.0",
+  "homepage": "https://github.com/masegalab/bluemarble",
+  "authors": [
+    "Pablo Navarro Castillo <pablo@masega.co>"
+  ],
+  "description": "Time lapse of the Blue Marble image from NASA",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "d3",
+    "canvas",
+    "blue-marble",
+    "nasa"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
