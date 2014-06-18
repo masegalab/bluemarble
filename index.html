@@ -7,8 +7,10 @@
 
     <title>Changing Earth</title>
 
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="http://masegalab.github.io/bluemarble/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://masegalab.github.io/bluemarble/assets/css/main.css" rel="stylesheet">
+    <script src="/d3/d3.min.js"></script>
+
   </head>
   <body>
 
@@ -35,25 +37,21 @@
         </div>
     </div>
 
-
-    <script src="bower_components/d3/d3.min.js"></script>
-    <script src="src/app/timelapse.js"></script>
-
     <script>
 
         var images = [
-            {ready: false, url: 'assets/images/200402.jpg', img: null, month:  0, label: 'FEBRUARY 2004'},
-            {ready: false, url: 'assets/images/200403.jpg', img: null, month:  1, label: 'MARCH 2004'},
-            {ready: false, url: 'assets/images/200404.jpg', img: null, month:  2, label: 'APRIL 2004'},
-            {ready: false, url: 'assets/images/200405.jpg', img: null, month:  3, label: 'MAY 2004'},
-            {ready: false, url: 'assets/images/200406.jpg', img: null, month:  4, label: 'JUNE 2004'},
-            {ready: false, url: 'assets/images/200407.jpg', img: null, month:  5, label: 'JULY 2004'},
-            {ready: false, url: 'assets/images/200408.jpg', img: null, month:  6, label: 'AUGUST 2004'},
-            {ready: false, url: 'assets/images/200409.jpg', img: null, month:  7, label: 'SEPTEMBER 2004'},
-            {ready: false, url: 'assets/images/200410.jpg', img: null, month:  8, label: 'OCTOBER 2004'},
-            {ready: false, url: 'assets/images/200411.jpg', img: null, month:  9, label: 'NOVEMBER 2004'},
-            {ready: false, url: 'assets/images/200412.jpg', img: null, month: 10, label: 'DECEMBER 2004'},
-            {ready: false, url: 'assets/images/200401.jpg', img: null, month: 11, label: 'JANUARY 2004'}
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200402.jpg', img: null, month:  0, label: 'FEBRUARY 2004'},
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200403.jpg', img: null, month:  1, label: 'MARCH 2004'},
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200404.jpg', img: null, month:  2, label: 'APRIL 2004'},
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200405.jpg', img: null, month:  3, label: 'MAY 2004'},
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200406.jpg', img: null, month:  4, label: 'JUNE 2004'},
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200407.jpg', img: null, month:  5, label: 'JULY 2004'},
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200408.jpg', img: null, month:  6, label: 'AUGUST 2004'},
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200409.jpg', img: null, month:  7, label: 'SEPTEMBER 2004'},
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200410.jpg', img: null, month:  8, label: 'OCTOBER 2004'},
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200411.jpg', img: null, month:  9, label: 'NOVEMBER 2004'},
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200412.jpg', img: null, month: 10, label: 'DECEMBER 2004'},
+            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200401.jpg', img: null, month: 11, label: 'JANUARY 2004'}
         ];
 
         // Load the images
