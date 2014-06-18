@@ -1,4 +1,5 @@
-bluemarble
-==========
+# Blue Marble
 
-Time lapse of the Blue Marble image from NASA
+One year in Earth's life.
+
+![Screenshot](assets/images/screenshot.png)
