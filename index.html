@@ -14,6 +14,11 @@
   </head>
   <body>
 
+
+
+
+
+
     <div>
         <div id="canvas-image"></div>
 
@@ -32,13 +37,14 @@
             </div>
 
             <div id="controls">
-                <span id='control-label'>play</span> <span class="glyphicon glyphicon-play" id='control-button'></span>
+                <p><span id='control-label'>play</span> <span class="glyphicon glyphicon-play" id='control-button'></span></p>
+
+                <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://masegalab.github.io/bluemarble/">Tweet</a></p>
             </div>
         </div>
     </div>
 
     <script>
-
         var images = [
             {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200402.jpg', img: null, month:  0, label: 'FEBRUARY 2004'},
             {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200403.jpg', img: null, month:  1, label: 'MARCH 2004'},
@@ -90,9 +96,7 @@
                         var context = d3.select(this).node().getContext('2d');
 
                         // Draw the canvas image
-
                         context.drawImage(image.img, 0, 0, width, height);
-
                         context.setFillColor('#bababa');
                         context.font = '12pt Arial';
                         context.fillText(image.label, 40, 30);
@@ -146,6 +150,8 @@
 
 
     </script>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
   </body>
 </html>
