@@ -1,0 +1,31 @@
+{
+  "name": "bluemarble",
+  "version": "0.1.1",
+  "description": "Time lapse of the Blue Marble image from NASA",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/masegalab/bluemarble.git"
+  },
+  "keywords": [
+    "d3",
+    "blue-marble",
+    "nasa",
+    "canvas"
+  ],
+  "author": "Pablo Navarro Castillo <pablo@masega.co>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/masegalab/bluemarble/issues"
+  },
+  "homepage": "https://github.com/masegalab/bluemarble",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-imagemin": "^0.7.1",
+    "grunt-curl": "^2.0.2",
+    "imagemin-jpeg-recompress": "^0.3.0"
+  }
+}
