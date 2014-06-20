@@ -1,6 +1,6 @@
 {
   "name": "bluemarble",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Time lapse of the Blue Marble image from NASA",
   "main": "index.html",
   "scripts": {
@@ -25,6 +25,7 @@
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-imagemin": "^0.7.1",
+    "grunt-contrib-less": "^0.11.2",
     "grunt-curl": "^2.0.2",
     "imagemin-jpeg-recompress": "^0.3.0"
   }

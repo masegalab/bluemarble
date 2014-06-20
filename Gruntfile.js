@@ -46,12 +46,25 @@ module.exports = function (grunt) {
                 ],
                 dest: 'src/images'
             }
-        }
+        },
+
+        // Compile the CSS files
+        less: {
+            main: {
+                options: {
+                    paths: ['assets/css']
+                },
+                files: {
+                    'assets/css/bluemarble.css': 'src/less/bluemarble.less',
+                }
+            }
+        },
     });
 
     // Grunt Plugins
     grunt.loadNpmTasks('grunt-curl');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
     // Tasks
 };
