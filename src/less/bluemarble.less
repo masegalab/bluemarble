@@ -1,17 +1,29 @@
 body {
     background-color: #020515;
+    margin: 0;
+    font-size: 14px;
+    font-family: Arial, Helvetica;
+
+    a {
+        color: #5cadd6;
+        text-decoration: none;
+    }
 }
 
-#canvas-image {
+// Image Container
+#image-container {
+    width: 100%;
     position: relative;
 }
 
-.earth-image {
+.canvas-image {
     position: absolute;
-    top: 0;
+    top:  0;
     left: 0;
+    opacity: 0;
 }
 
+// Title and description
 #annotation {
     position: absolute;
 
