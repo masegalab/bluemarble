@@ -7,16 +7,18 @@
 
     <title>Changing Earth</title>
 
-    <link href="http://masegalab.github.io/bluemarble/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://masegalab.github.io/bluemarble/assets/css/main.css" rel="stylesheet">
-    <script src="http://masegalab.github.io/bluemarble/assets/js/d3.min.js"></script>
+    <link href="/assets/css/bluemarble.css" rel="stylesheet">
+    <script src="/assets/js/d3.min.js"></script>
+    <script src="/src/app/timelapse.js"></script>
 
   </head>
   <body>
 
     <div>
-        <div id="canvas-image"></div>
+        <!-- Image container -->
+        <div id="image-container"></div>
 
+        <!-- Title and description -->
         <div id="annotation">
 
             <div class="title">
@@ -32,7 +34,7 @@
             </div>
 
             <div id="controls">
-                <p><span id='control-label'>play</span> <span class="glyphicon glyphicon-play" id='control-button'></span></p>
+                <p id='play-control'>play</p>
 
                 <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://masegalab.github.io/bluemarble/">Tweet</a></p>
             </div>
@@ -40,113 +42,60 @@
     </div>
 
     <script>
+        // List of images to display
         var images = [
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200402.jpg', img: null, month:  0, label: 'FEBRUARY 2004'},
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200403.jpg', img: null, month:  1, label: 'MARCH 2004'},
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200404.jpg', img: null, month:  2, label: 'APRIL 2004'},
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200405.jpg', img: null, month:  3, label: 'MAY 2004'},
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200406.jpg', img: null, month:  4, label: 'JUNE 2004'},
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200407.jpg', img: null, month:  5, label: 'JULY 2004'},
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200408.jpg', img: null, month:  6, label: 'AUGUST 2004'},
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200409.jpg', img: null, month:  7, label: 'SEPTEMBER 2004'},
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200410.jpg', img: null, month:  8, label: 'OCTOBER 2004'},
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200411.jpg', img: null, month:  9, label: 'NOVEMBER 2004'},
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200412.jpg', img: null, month: 10, label: 'DECEMBER 2004'},
-            {ready: false, url: 'http://masegalab.github.io/bluemarble/assets/images/200401.jpg', img: null, month: 11, label: 'JANUARY 2004'}
+            {url: '/assets/images/200402.jpg', date: new Date(2004,  0, 1)},
+            {url: '/assets/images/200403.jpg', date: new Date(2004,  1, 1)},
+            {url: '/assets/images/200404.jpg', date: new Date(2004,  2, 1)},
+            {url: '/assets/images/200405.jpg', date: new Date(2004,  3, 1)},
+            {url: '/assets/images/200406.jpg', date: new Date(2004,  4, 1)},
+            {url: '/assets/images/200407.jpg', date: new Date(2004,  5, 1)},
+            {url: '/assets/images/200408.jpg', date: new Date(2004,  6, 1)},
+            {url: '/assets/images/200409.jpg', date: new Date(2004,  7, 1)},
+            {url: '/assets/images/200410.jpg', date: new Date(2004,  8, 1)},
+            {url: '/assets/images/200411.jpg', date: new Date(2004,  9, 1)},
+            {url: '/assets/images/200412.jpg', date: new Date(2004, 10, 1)},
+            {url: '/assets/images/200401.jpg', date: new Date(2004, 11, 1)}
         ];
 
-        // Load the images
-        images.forEach(function(image) {
-            image.img = new Image();
-            image.img.src = image.url;
-            image.img.onload = function() {
-                image.ready = true;
-                loadImages();
-            }
-        });
-
-        var width  = parseInt(d3.select('#canvas-image').style('width'), 0),
+        var imageContainer = d3.select('#image-container'),
+            dateFormat = d3.time.format('%b %Y'),
+            width  = parseInt(imageContainer.style('width'), 10),
             height = width / 2;
 
-        function loadImages() {
-
-            // All the images are loaded
-            if (images.every(function(d) { return d.ready; })) {
-
-                // Change the background color
-                d3.select('body').transition().duration(1000)
-                    .style('background-color', '#f4f4f4');
-
-                var canvas = d3.select('#canvas-image').selectAll('canvas')
-                    .data(images, function(d) { return d.month; });
-
-                canvas.enter().append('canvas')
-                    .attr('width',  width)
-                    .attr('height', height)
-                    .attr('class', 'earth-image');
-
-                canvas.call(function(selection) {
-                    selection.each(function(image, index) {
-
-                        var context = d3.select(this).node().getContext('2d');
-
-                        // Draw the canvas image
-                        context.drawImage(image.img, 0, 0, width, height);
-                        context.setFillColor('#bababa');
-                        context.font = '12pt Arial';
-                        context.fillText(image.label, 40, 30);
-                    });
-                });
-            }
-        }
-
-        var imageIndex = 0,
-            running = false,
-            currentTimeout;
-
-        function animateImages() {
-
-            var canvas = d3.select('#canvas-image').selectAll('canvas');
-
-            canvas.transition().duration(2000)
-                .style('opacity', function(d) { return +(d.month <= imageIndex); });
-
-            imageIndex = (imageIndex + 1) % images.length;
-
-            d3.select('#month-label')
-                .html(images[imageIndex].label);
-
-            if (running) {
-                currentTimeout = setTimeout(animateImages, 2000);
-            }
-        }
-
-        d3.select('#controls').on('click', function() {
-
-            running = !running;
-
-            var label = running ? 'pause' : 'play';
-
-            d3.select('#control-label').html(function() {
-                return running ? 'pause' : 'play';
+        // Create and configure the instance of the image timelapse chart
+        var timelapse = imageTimelapse()
+            .images(images)
+            .width(width)
+            .height(height)
+            .label(function(d) { return dateFormat(d.date); })
+            .onLoadImage(function(d) {
+                // Displays the images only when they are all loaded
+                if (images.every(function(d) { return d.ready; })) {
+                    d3.select('body').style('background-color', '#f4f4f4');
+                    imageContainer.selectAll('.canvas-image').style('opacity', 1);
+                }
             });
 
-            d3.select('#control-button')
-                .classed('glyphicon-play', !running)
-                .classed('glyphicon-pause', running);
+        // Render the images
+        imageContainer.data(images).call(timelapse);
 
-            if (running) {
-                animateImages();
-            } else {
-                clearTimeout(currentTimeout);
-            }
+        // Play Control
+        d3.select('#play-control').on('click', function() {
 
+            timelapse.toggle(imageContainer);
+
+            d3.select('#play-control').html(function() {
+                return timelapse.running() ? 'pause' : 'play';
+            });
         });
-
 
     </script>
 
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <!-- Twitter Sharing Button -->
+    <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    </script>
 
   </body>
 </html>

@@ -1,0 +1,51 @@
+body {
+  background-color: #020515;
+  margin: 0;
+  font-size: 14px;
+  font-family: Arial, Helvetica;
+}
+body a {
+  color: #5cadd6;
+  text-decoration: none;
+}
+#image-container {
+  width: 100%;
+  position: relative;
+}
+.canvas-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+#annotation {
+  position: absolute;
+  top: 200px;
+  left: 30px;
+  width: 220px;
+  height: 100px;
+  padding: 10px;
+}
+.title {
+  color: #fff;
+  text-transform: uppercase;
+  border-bottom: solid 1px #fff;
+}
+.title-sup {
+  font-size: 32px;
+}
+.title-sub {
+  font-size: 52px;
+  line-height: 0.8;
+}
+.small {
+  font-size: 12px;
+}
+.lead {
+  font-size: 16px;
+  color: #bababa;
+}
+#controls {
+  color: #fff;
+  text-transform: uppercase;
+}
